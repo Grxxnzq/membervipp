@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+<h1 class="text-2xl font-bold mb-4">Revenue Dashboard</h1>
+<canvas id="revChart"></canvas>
+
+<script>
+fetch("/api/admin/revenue")
+.then(res=>res.json())
+.then(data=>{
+  new Chart(document.getElementById("revChart"),{
+    type:"bar",
+    data:{
+      labels:["Total Revenue"],
+      datasets:[{label:"THB", data:[data.totalRevenue]}]
+    }
+  });
+});
+</script>
+</body>
+</html>
